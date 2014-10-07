@@ -1,0 +1,76 @@
+{
+    "pair_version": "0.1.0",
+    "card_type": "product",
+    "web_url": "http://www.examplestore.com/listing/36226783/green-leather-shoes",
+    "offers": [
+        {
+            "price": {
+                "price": 7.99,
+                "currency": "USD"
+            },
+            "original_price": {
+                "price": 17.99,
+                "currency": "USD"
+            },
+            "shipping_cost": {
+                "price": 1.5,
+                "currency": "USD"
+            },
+            "description": "Primary offer",
+            "availability": "InStock",
+            "quantity": 15,
+            "sale_start_date": "2014-06-01T00:00:00.000+0000",
+            "sale_end_date": "2014-06-24T00:00:00.000+0000",
+            "expiration_date": "2014-07-13T00:00:00.000+0000",
+            "geographic_availability": [
+                "US"
+            ],
+            "weight": 17,
+            "weight_units": "oz"
+        }
+    ],
+    "product": {
+        "name": "Green leather shoes",
+        "merchant": "Example Store",
+        "brand": "Shoemaster",
+        "description": "Brilliant, colorful shoes made from recycled materials.",
+        "gender": "unisex",
+        "colors": [
+            {
+                "display_name": "Mint",
+                "swatch_url": "http://https://www.examplestore.com/swatches/mint.jpg",
+                "value": "RGB(62, 180, 137)",
+                "mapping_color": "green"
+            }
+        ],
+        "images": [
+            "http://img.examplestore.com/02/wer4554/il_5d9184_iqm9.jpg",
+            "http://img.examplestore.com/017/fgh/il_57w9.jpg",
+            "https://img.examplestore.com/020rjt/24554/il_570d14_3us0.jpg",
+            "https://img.examplestore.com/0166f54/il_570xg90_87gc.jpg"
+        ],
+        "rating": 8,
+        "rating_scale": 10,
+        "rating_count": 12,
+        "related_items": [
+            "http://www.examplestore.com/listing/36226783/green-leather-shoes",
+            "http://www.examplestore.com/listing/16362355/maroon-checkered-shoes",
+            "http://www.examplestore.com/listing/13245522/pink-nylon-shoes"
+        ],
+        "referenced_items": [
+            "http://www.examplestore.com/listing/45637734/blue-leather-shoes",
+            "http://www.examplestore.com/listing/88833589/yellow-leather-shoes"
+        ],
+        "sizes": {
+            "md": "Medium"
+        },
+        "options": [
+            "example option a",
+            "example option b",
+            "example option c"
+        ],
+        "model": "KICKN-GRL-17",
+        "app_link_ios": "jump://VerticalA/x123",
+        "app_link_android": "market://search?q=pub:examplestore"
+    }
+}
