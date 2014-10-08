@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "wildcard-pair"
-  spec.version       = "0.1.2"
+  spec.version       = "0.2.0"
   spec.authors       = ["Karthik Senthil"]
   spec.email         = ["pair@trywildcard.com"]
   spec.summary       = "Wildcard Pair Ruby SDK"
