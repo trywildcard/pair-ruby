@@ -87,7 +87,7 @@ module WildcardPair
       if (!@colors.nil? && @colors.any?)
         @colors.each do |color|
           if (!color.is_a?(Color) || !color.valid?)
-            errors.add(:colors, "Atleast one of the colors is an invalid color object")
+            errors.add(:colors, "At least one of the colors is an invalid color object")
             return
           end
         end

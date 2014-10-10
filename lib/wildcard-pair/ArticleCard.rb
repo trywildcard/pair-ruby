@@ -51,11 +51,12 @@ module WildcardPair
         return
       end
 
-      if !@article.valid?
-        @article.errors.full_messages.each do |msg|
-          errors[:base] << "Article Error: #{msg}"
+      if !@article.nil?
+        if !@article.valid?
+          @article.errors.each do |error, msg|
+            errors[error] = msg
+          end
         end
-        return false
       end
     end
 

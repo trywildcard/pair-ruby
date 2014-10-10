@@ -48,14 +48,14 @@ module WildcardPair
     def validate_video
       if @video.nil? || !@video.is_a?(Video)
         errors.add(:video, "A video is required")
-        return false
       end
 
-      if !@video.valid?
-        @video.errors.full_messages.each do |msg|
-          errors[:base] << "Video Error: #{msg}"
+      if !@video.nil? 
+        if !@video.valid?
+          @video.errors.each do |error, msg|
+            errors[error] = msg
+          end
         end
-        return false
       end
     end
 

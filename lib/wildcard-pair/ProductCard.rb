@@ -78,9 +78,11 @@ module WildcardPair
         return
       end
 
-      if !@product.valid?
-        @product.errors.full_messages.each do |msg|
-          errors[:base] << "Product Error: #{msg}"
+      if !@product.nil?
+        if !@product.valid?
+          @product.errors.each do |error, msg|
+            errors[error] = msg
+          end
         end
       end
     end

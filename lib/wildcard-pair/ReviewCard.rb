@@ -49,11 +49,12 @@ module WildcardPair
         return
       end
 
-      if !@review.valid?
-        @review.errors.full_messages.each do |msg|
-          errors[:base] << "Review Error: #{msg}"
+      if !@review.nil? 
+        if !@review.valid?
+          @review.errors.each do |error, msg|
+            errors[error] = msg
+          end
         end
-        return false
       end
     end
 
