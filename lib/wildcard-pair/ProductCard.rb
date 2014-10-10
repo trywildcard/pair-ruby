@@ -60,13 +60,13 @@ module WildcardPair
 
     def validateOffers
       if @offers.nil? || (@offers.is_a?(Array) && !@offers.any?)
-        errors.add(:offers, 'Atleast one offer is required')
+        errors.add(:offers, 'At least one offer is required')
         return
       end
 
       @offers.each do |offer|
         if (!offer.is_a?(Offer) || !offer.valid?)
-          errors.add(:offers, "Atleast one of the offers is invalid")
+          errors.add(:offers, "At least one of the offers is invalid")
           return
         end
       end
