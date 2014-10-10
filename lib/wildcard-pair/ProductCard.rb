@@ -73,9 +73,15 @@ module WildcardPair
     end
 
     def validateProduct
-      if @product.nil? || !@product.is_a?(Product) || !@product.valid?
+      if @product.nil? || !@product.is_a?(Product)
         errors.add(:product, "A product is required")
         return
+      end
+
+      if !@product.valid?
+        @product.errors.full_messages.each do |msg|
+          errors[:base] << "Product Error: #{msg}"
+        end
       end
     end
 

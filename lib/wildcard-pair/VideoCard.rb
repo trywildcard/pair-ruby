@@ -5,10 +5,10 @@ require_relative 'hash_mappable.rb'
 require_relative 'Media.rb'
 
 module WildcardPair
-  class ArticleCard
+  class VideoCard
     private
 
-    attr_accessor :article, :card_type, :pair_version
+    attr_accessor :video, :card_type, :pair_version
 
     public
 
@@ -18,17 +18,17 @@ module WildcardPair
     include WildcardPair::Media
 
     attr_accessor :web_url
-    attr_reader :article, :card_type, :pair_version
+    attr_reader :video, :card_type, :pair_version
 
     validates :web_url, presence: true
-    validate :validate_article
+    validate :validate_video
 
     def initialize(attributes = {})
       attributes.each do |name, value|
         send("#{name}=", value)
       end
 
-      @card_type = 'article'
+      @card_type = 'video'
 
       if !Gem.loaded_specs['wildcard-pair'].nil?
         @pair_version = Gem.loaded_specs['wildcard-pair'].version.to_s
@@ -41,19 +41,19 @@ module WildcardPair
       instance_values
     end
 
-    def article=(article)
-      @article = map_hash(article, WildcardPair::Article.new)
+    def video=(video)
+      @video = map_hash(video, WildcardPair::Media::Video.new)
     end
 
-    def validate_article
-      if @article.nil? || !@article.is_a?(Article)
-        errors.add(:article, "An article is required")
-        return
+    def validate_video
+      if @video.nil? || !@video.is_a?(Video)
+        errors.add(:video, "A video is required")
+        return false
       end
 
-      if !@article.valid?
-        @article.errors.full_messages.each do |msg|
-          errors[:base] << "Article Error: #{msg}"
+      if !@video.valid?
+        @video.errors.full_messages.each do |msg|
+          errors[:base] << "Video Error: #{msg}"
         end
         return false
       end
@@ -68,7 +68,7 @@ module WildcardPair
       if self.valid?
         super(options)
       else
-        raise "Article Card is not valid - please remedy the following errors:" << self.errors.messages.to_s
+        raise "Video Card is not valid - please remedy the following errors:" << self.errors.messages.to_s
       end    
     end 
 

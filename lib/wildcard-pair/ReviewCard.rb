@@ -2,33 +2,31 @@
 
 require 'active_model'
 require_relative 'hash_mappable.rb'
-require_relative 'Media.rb'
 
 module WildcardPair
-  class ArticleCard
+  class ReviewCard
     private
 
-    attr_accessor :article, :card_type, :pair_version
+    attr_accessor :review, :card_type, :pair_version
 
     public
 
     include ActiveModel::Validations
     include ActiveModel::Serializers::JSON
     include WildcardPair::HashMappable
-    include WildcardPair::Media
 
     attr_accessor :web_url
-    attr_reader :article, :card_type, :pair_version
+    attr_reader :review, :card_type, :pair_version
 
     validates :web_url, presence: true
-    validate :validate_article
+    validate :validate_review
 
     def initialize(attributes = {})
       attributes.each do |name, value|
         send("#{name}=", value)
       end
 
-      @card_type = 'article'
+      @card_type = 'review'
 
       if !Gem.loaded_specs['wildcard-pair'].nil?
         @pair_version = Gem.loaded_specs['wildcard-pair'].version.to_s
@@ -41,19 +39,19 @@ module WildcardPair
       instance_values
     end
 
-    def article=(article)
-      @article = map_hash(article, WildcardPair::Article.new)
+    def review=(review)
+      @review = map_hash(review, WildcardPair::Review.new)
     end
 
-    def validate_article
-      if @article.nil? || !@article.is_a?(Article)
-        errors.add(:article, "An article is required")
+    def validate_review
+      if @review.nil? or !@review.is_a? Review
+        errors.add(:review, "A review is required")
         return
       end
 
-      if !@article.valid?
-        @article.errors.full_messages.each do |msg|
-          errors[:base] << "Article Error: #{msg}"
+      if !@review.valid?
+        @review.errors.full_messages.each do |msg|
+          errors[:base] << "Review Error: #{msg}"
         end
         return false
       end
@@ -68,7 +66,7 @@ module WildcardPair
       if self.valid?
         super(options)
       else
-        raise "Article Card is not valid - please remedy the following errors:" << self.errors.messages.to_s
+        raise "Review Card is not valid - please remedy the following errors:" << self.errors.messages.to_s
       end    
     end 
 
