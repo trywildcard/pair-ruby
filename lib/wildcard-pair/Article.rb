@@ -20,8 +20,8 @@ module WildcardPair
 
     attr_reader :media
 
-    validates :title, presence: true, length: {minimum: 1}
-    validates :html_content, presence: true, length: {minimum: 1}
+    validates :title, presence: true
+    validates :html_content, presence: true
     validate :validate_media
 
     def initialize(attributes = {})

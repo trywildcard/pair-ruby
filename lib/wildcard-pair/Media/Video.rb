@@ -18,8 +18,8 @@ module WildcardPair::Media
       :description, :poster_image_url, :creator, :source, :app_link_ios, 
       :app_link_android
 
-    validates :title, presence: true, length: {minimum: 1}
-    validates :embedded_url, presence: true, length: {minimum: 1}
+    validates :title, presence: true
+    validates :embedded_url, presence: true
     validates :embedded_url_width, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
     validates :embedded_url_height, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 

@@ -14,7 +14,7 @@ module WildcardPair::Media
 
     attr_accessor :image_url, :image_caption
 
-    validates :image_url, presence: true, length: {minimum: 1}
+    validates :image_url, presence: true
 
     def initialize(attributes = {})
       attributes.each do |name, value|

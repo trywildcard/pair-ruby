@@ -81,7 +81,7 @@ module WildcardPair
       if !@product.nil?
         if !@product.valid?
           @product.errors.each do |error, msg|
-            errors[error] = msg
+            errors["product[%s]" % error] = msg
           end
         end
       end

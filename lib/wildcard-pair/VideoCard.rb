@@ -53,7 +53,7 @@ module WildcardPair
       if !@video.nil? 
         if !@video.valid?
           @video.errors.each do |error, msg|
-            errors[error] = msg
+             errors["video[%s]" % error] = msg = msg
           end
         end
       end

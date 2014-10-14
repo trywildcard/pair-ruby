@@ -52,7 +52,7 @@ module WildcardPair
       if !@review.nil? 
         if !@review.valid?
           @review.errors.each do |error, msg|
-            errors[error] = msg
+             errors["review[%s]" % error] = msg
           end
         end
       end

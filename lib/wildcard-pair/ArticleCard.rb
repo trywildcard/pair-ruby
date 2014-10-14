@@ -54,7 +54,7 @@ module WildcardPair
       if !@article.nil?
         if !@article.valid?
           @article.errors.each do |error, msg|
-            errors[error] = msg
+             errors["article[%s]" % error] = msg
           end
         end
       end

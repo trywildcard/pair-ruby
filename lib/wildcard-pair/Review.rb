@@ -18,8 +18,8 @@ module WildcardPair
       :app_link_android
     attr_reader :rating
 
-    validates :title, presence: true, length: {minimum: 1}
-    validates :html_content, presence: true, length: {minimum: 1}
+    validates :title, presence: true
+    validates :html_content, presence: true
 
     validate :validate_rating
 
