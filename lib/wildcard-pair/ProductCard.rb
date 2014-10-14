@@ -65,9 +65,12 @@ module WildcardPair
       end
 
       @offers.each do |offer|
-        if (!offer.is_a?(Offer) || !offer.valid?)
+        if !offer.is_a?(Offer)
           errors.add(:offers, "At least one of the offers is invalid")
-          return
+        elsif !offer.valid?
+          offer.errors.each do |error, msg|
+            errors["offer[%s]" % error] = msg
+          end
         end
       end
     end
