@@ -7,11 +7,11 @@ module WildcardPair
     include ActiveModel::Serializers::JSON
     include WildcardPair::HashMappable
 
-    attr_accessor :name, :price, :product_card_url, :image_url
+    attr_accessor :name, :price, :product_card_address, :image_url
 
     validates :name, presence: true
     validates :price, presence: true
-    validates :product_card_url, presence: true
+    validates :product_card_address, presence: true
     validates :image_url, presence: true
 
     validate :validatePrice
