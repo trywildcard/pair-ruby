@@ -37,8 +37,16 @@ module WildcardPair
     def media=(media)
       if media.is_a? Video
         @media = map_hash(media, Media::Video.new)
-      else
+      elsif media.is_a? Image
         @media = map_hash(media, Media::Image.new)
+      elsif media.is_a? Hash
+        if media[:type] == 'video'
+          @media = map_hash(media.reject!{ |k| k == :type }, Media::Video.new)
+        elsif media[:type] == 'image'
+          @media = map_hash(media.reject!{ |k| k == :type }, Media::Image.new)
+        else
+          errors.add(:media, "Media type not specified correctly")
+        end
       end
     end
 

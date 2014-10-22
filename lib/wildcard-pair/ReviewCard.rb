@@ -49,11 +49,9 @@ module WildcardPair
         return
       end
 
-      if !@review.nil? 
-        if !@review.valid?
-          @review.errors.each do |error, msg|
-             errors["review[%s]" % error] = msg
-          end
+      if !@review.valid?
+        @review.errors.each do |error, msg|
+           errors["review[%s]" % error] = msg
         end
       end
     end

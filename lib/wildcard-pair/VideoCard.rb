@@ -50,11 +50,9 @@ module WildcardPair
         errors.add(:video, "A video is required")
       end
 
-      if !@video.nil? 
-        if !@video.valid?
-          @video.errors.each do |error, msg|
-             errors["video[%s]" % error] = msg = msg
-          end
+      if !@video.valid?
+        @video.errors.each do |error, msg|
+           errors["video[%s]" % error] = msg = msg
         end
       end
     end
