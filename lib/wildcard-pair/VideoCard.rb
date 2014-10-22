@@ -48,6 +48,7 @@ module WildcardPair
     def validate_video
       if @video.nil? || !@video.is_a?(Video)
         errors.add(:video, "A video is required")
+        return
       end
 
       if !@video.valid?
