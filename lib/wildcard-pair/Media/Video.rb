@@ -12,7 +12,7 @@ module WildcardPair::Media
     include WildcardPair::Media
 
     # required fields
-    attr_accessor :title, :embedded_url, :embedded_url_width, :embedded_url_height
+    attr_accessor :title, :embedded_url, :embedded_url_width, :embedded_url_height, :type
     # optional fields
     attr_accessor :stream_url, :stream_content_type, :publication_date, 
       :description, :poster_image_url, :creator, :source, :app_link_ios, 
@@ -22,11 +22,14 @@ module WildcardPair::Media
     validates :embedded_url, presence: true
     validates :embedded_url_width, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
     validates :embedded_url_height, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+    validates :type, presence: true, inclusion: {in: %w(video), message: 'incorrect media type specified'}
 
     def initialize(attributes = {})
       attributes.each do |name, value|
         send("#{name}=", value)
       end
+
+      @type = 'video'
     end
 
     def attributes

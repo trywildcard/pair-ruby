@@ -12,14 +12,17 @@ module WildcardPair::Media
     include WildcardPair::HashMappable
     include WildcardPair::Media
 
-    attr_accessor :image_url, :image_caption
+    attr_accessor :image_url, :image_caption, :type
 
     validates :image_url, presence: true
+    validates :type, presence: true, inclusion: {in: %w(image), message: 'incorrect media type specified'}
 
     def initialize(attributes = {})
       attributes.each do |name, value|
         send("#{name}=", value)
       end
+
+      @type = 'image'
     end
 
     def attributes
