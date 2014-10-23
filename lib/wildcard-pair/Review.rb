@@ -2,6 +2,7 @@
 
 require 'active_model'
 require_relative 'hash_mappable.rb'
+require_relative 'Media.rb'
 
 module WildcardPair
   class Review
@@ -9,6 +10,7 @@ module WildcardPair
     include ActiveModel::Validations
     include ActiveModel::Serializers::JSON
     include WildcardPair::HashMappable
+    include WildcardPair::Media
 
     # required fields
     attr_accessor :title, :html_content
