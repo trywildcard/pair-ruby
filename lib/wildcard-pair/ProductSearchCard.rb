@@ -44,7 +44,7 @@ module WildcardPair
 
      def products=(products)
       @products ||= Array.new
-
+      
       if products.is_a?(Array)
         products.each do |product|
           @products << map_hash(product, ProductSearchResult.new)
