@@ -42,11 +42,11 @@ module WildcardPair
       elsif media.is_a? Hash
         if media[:type] == 'video'
           @media = map_hash(media, Media::Video.new)
-        else
+        elsif media[:type] == 'image'
           @media = map_hash(media, Media::Image.new)
+        else
+          @media = media
         end
-      else
-        errors.add(:media, "Media type not specified correctly")
       end
     end
 
