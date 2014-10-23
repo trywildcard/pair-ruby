@@ -14,14 +14,40 @@ module WildcardPair
     attr_accessor :title, :html_content
     # optional fields
     attr_accessor :publication_date, :abstract_content, :source, :author,
-      :updated_date, :media, :product_name, :app_link_ios,
+      :updated_date, :product_name, :app_link_ios,
       :app_link_android
-    attr_reader :rating
+    attr_reader :rating, :media
 
     validates :title, presence: true
     validates :html_content, presence: true
 
+    validate :validate_media
     validate :validate_rating
+
+    def media=(media)
+      if media.is_a? Video
+        @media = map_hash(media, Media::Video.new)
+      elsif media.is_a? Image
+        @media = map_hash(media, Media::Image.new)
+      elsif media.is_a? Hash
+        if media[:type] == 'video'
+          @media = map_hash(media, Media::Video.new)
+        elsif media[:type] == 'image'
+          @media = map_hash(media, Media::Image.new)
+        else
+          @media = media
+        end
+      end
+    end
+
+    def validate_media
+      if @media.nil? then return end
+
+      if !@media.is_a? Media or !@media.valid?
+        errors.add(:media, "Media is invalid")
+        return false
+      end
+    end
 
     def rating=(rating)
       @rating = map_hash(rating, WildcardPair::Rating.new)
