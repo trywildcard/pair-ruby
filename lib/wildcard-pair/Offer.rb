@@ -13,7 +13,7 @@ module WildcardPair
     attr_reader :price, :original_price, :shipping_cost, :geographic_availability
 
     validates :price, presence: true
-    validates :description, allow_nil: true, length: {minimum: 1}
+    validates :description, allow_nil: true, presence: true
     validates :availability, allow_nil: true, inclusion: {in: %w(Discontinued InStock InStoreOnly LimitedAvailability OnlineOnly OutOfStock PreOrder SoldOut) }
     validates :weight, allow_nil: true, numericality: {greater_than_or_equal_to: 0}
     validates :quantity, allow_nil: true, numericality: {only_integer: true, greater_than_or_equal_to: 0} 
