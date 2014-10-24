@@ -30,6 +30,8 @@ TODO: Write usage instructions here
 
 ## Publishing
 
+*Make sure you have geminabox installed.  If not, use `gem install geminabox`*
+
 When you increment the version, remember to push it to the gem server.
 
 gem build wildcard-pair.gemspec
