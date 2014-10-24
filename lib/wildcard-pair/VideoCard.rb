@@ -8,7 +8,7 @@ module WildcardPair
   class VideoCard
     private
 
-    attr_accessor :video, :card_type, :pair_version
+    attr_accessor :media, :card_type, :pair_version
 
     public
 
@@ -18,10 +18,10 @@ module WildcardPair
     include WildcardPair::Media
 
     attr_accessor :web_url
-    attr_reader :video, :card_type, :pair_version
+    attr_reader :media, :card_type, :pair_version
 
     validates :web_url, presence: true
-    validate :validate_video
+    validate :validate_media
 
     def initialize(attributes = {})
       attributes.each do |name, value|
@@ -41,19 +41,19 @@ module WildcardPair
       instance_values
     end
 
-    def video=(video)
-      @video = map_hash(video, WildcardPair::Media::Video.new)
+    def media=(media)
+      @media = map_hash(media, WildcardPair::Media::Video.new)
     end
 
-    def validate_video
-      if @video.nil? || !@video.is_a?(Video)
-        errors.add(:video, "A video is required")
+    def validate_media
+      if @media.nil? || !@media.is_a?(Video)
+        errors.add(:media, "A video is required")
         return
       end
 
-      if !@video.valid?
-        @video.errors.each do |error, msg|
-           errors["video[%s]" % error] = msg = msg
+      if !@media.valid?
+        @media.errors.each do |error, msg|
+           errors["media[%s]" % error] = msg = msg
         end
       end
     end
