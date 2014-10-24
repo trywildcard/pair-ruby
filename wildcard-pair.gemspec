@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "wildcard-pair"
-  spec.version       = "0.1.2"
+  spec.version       = "0.2.1"
   spec.authors       = ["Karthik Senthil"]
   spec.email         = ["pair@trywildcard.com"]
   spec.summary       = "Wildcard Pair Ruby SDK"
@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://pair.trywildcard.com"
   spec.license       = "MIT"
 
-  spec.files         = ["lib/wildcard-pair.rb", "lib/wildcard-pair/Color.rb", "lib/wildcard-pair/Offer.rb", "lib/wildcard-pair/Product.rb", "lib/wildcard-pair/ProductCard.rb", "lib/wildcard-pair/ProductSearchCard.rb", "lib/wildcard-pair/ProductSearchResult.rb", "lib/wildcard-pair/Price.rb", "lib/wildcard-pair/hash_mappable.rb"]
+  spec.files         = Dir['lib/*.rb'] + Dir['lib/*/*.rb'] + Dir['lib/*/*/*.rb']
  # spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
  # spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
  # spec.require_paths = ["lib/wildcard-pair"]

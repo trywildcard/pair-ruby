@@ -13,7 +13,7 @@ module WildcardPair
     attr_accessor :name, :merchant, :brand, :description, :gender, :rating, :rating_scale, :rating_count, :sizes, :model, :app_link_ios, :app_link_android
     attr_reader :colors, :images, :related_items, :referenced_items, :options
 
-    validates :name, presence: true, length: {minimum: 1}
+    validates :name, presence: true
     validates :gender, allow_nil: true, inclusion: {in: %w(male female unisex) }
 
     validate :validateColors
@@ -87,7 +87,7 @@ module WildcardPair
       if (!@colors.nil? && @colors.any?)
         @colors.each do |color|
           if (!color.is_a?(Color) || !color.valid?)
-            errors.add(:colors, "Atleast one of the colors is an invalid color object")
+            errors.add(:colors, "At least one of the colors is an invalid color object")
             return
           end
         end

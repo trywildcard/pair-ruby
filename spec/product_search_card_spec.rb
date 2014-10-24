@@ -5,8 +5,8 @@ describe WildcardPair::ProductSearchCard do
 before :each do
   price = WildcardPair::Price.new price: 5
   price2 = WildcardPair::Price.new price: 7.99
-    @validsearchresult = WildcardPair::ProductSearchResult.new price: price, name: 'ProductResult', product_card_url: 'http://brand.com/product/122', image_url: 'http://brand.com/product/122/image.jpg'
-    @validsearchresult2 = WildcardPair::ProductSearchResult.new price: price2, name: 'Product Result', product_card_url: 'http://brand.com/product/123', image_url: 'http://brand.com/product/123/image.jpg'
+    @validsearchresult = WildcardPair::ProductSearchResult.new price: price, name: 'ProductResult', product_card_address: 'http://brand.com/product/122', image_url: 'http://brand.com/product/122/image.jpg'
+    @validsearchresult2 = WildcardPair::ProductSearchResult.new price: price2, name: 'Product Result', product_card_address: 'http://brand.com/product/123', image_url: 'http://brand.com/product/123/image.jpg'
     @validsearchresults = [@validsearchresult, @validsearchresult2]
 end
 
@@ -71,7 +71,7 @@ end
 
 describe '#invalidsearchresults' do
   invalidprice = WildcardPair::Price.new price: -4.50, currency: "USD"
-  invalidSearchResult = WildcardPair::ProductSearchResult.new price: invalidprice, name: 'ProductResult', product_card_url: 'http://brand.com/product/123', image_url: 'http://brand.com/product/123/image.jpg'
+  invalidSearchResult = WildcardPair::ProductSearchResult.new price: invalidprice, name: 'ProductResult', product_card_address: 'http://brand.com/product/123', image_url: 'http://brand.com/product/123/image.jpg'
 
   invalidsearchresults1 = [@validsearchresult, @validsearchresult2, invalidSearchResult]
   invalidsearchresults2 = [@validsearchresult, @validsearchresult2, nil]
