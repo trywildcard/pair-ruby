@@ -14,6 +14,7 @@ module WildcardPair
     include ActiveModel::Validations
     include ActiveModel::Serializers::JSON
     include WildcardPair::HashMappable
+    include WildcardPair::ExtractMetaTags
 
     attr_accessor :web_url
     attr_reader :offers, :card_type, :pair_version, :product
@@ -56,6 +57,11 @@ module WildcardPair
 
     def product=(product)
       @product = map_hash(product, WildcardPair::Product.new)
+    end
+
+    def extract_metatags
+
+      extract(@web_url)
     end
 
     def validateOffers
