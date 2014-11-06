@@ -26,6 +26,15 @@ module WildcardPair
       end 
     end
 
+    def metatags=(metatags)
+      if metatags.nil? || !metatags.is_a?(Hash)
+        return
+      end
+
+      #see what you can set based on metatags
+      self.price=WildcardPair::Price.new price: metatags['price']
+    end
+
     def price=(price)
       @price = map_hash(price, WildcardPair::Price.new)
     end

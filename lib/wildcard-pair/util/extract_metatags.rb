@@ -5,8 +5,6 @@ require 'nokogiri'
 module WildcardPair
   module ExtractMetaTags
 
-
-
     def self.get_metatag_key(attribute)
 
     	if attribute.nil?
@@ -38,7 +36,6 @@ module WildcardPair
     end
 
     def self.get_meta_key(meta_element)
-    	puts meta_element
     	if !meta_element.is_a?(Hash)
     		return nil
     	end
@@ -64,30 +61,38 @@ module WildcardPair
    		
     end
 
-        def self.extract(web_url)
-       if web_url.is_a?(String) && !web_url.nil? && !web_url.empty? 
-       	## todo exception handling
- 	   		html = Net::HTTP.get(URI.parse(web_url))
- 	   		doc = Nokogiri::HTML(html)
- 	   		metatags = Hash.new
- 	   		#return doc.xpath("//meta") 		 
-        	doc.xpath("//meta").each do |meta|
-        		puts meta
-        		meta_key = get_meta_key(meta)
-        		meta_tag_key = get_metatag_key(meta_key)
+    private_class_method :get_meta_value, :get_meta_key, :get_metatag_key
 
-        		next if (!meta_key.nil? || metatags.has_key?(meta_tag_key))
-        		
-##todo add check to see if its a meta tag key we care about
-        		metatags[meta_tag_key] = get_meta_value(meta) 
+    public
+    def self.extract(web_url)
+        begin
+            metatags = Hash.new
+                 
+            if web_url.is_a?(String) && !web_url.nil? && !web_url.empty? 
+ 	   		     html_content = Net::HTTP.get(URI.parse(web_url))
+                 ##store html content in metatags hash
+                 metatags['html']=html_content
+ 	   		     doc = Nokogiri::HTML(html_content)
+ 	   		     
+                doc.xpath("//meta").each do |meta|
+        		      meta_key = get_meta_key(meta.attributes)
+        		      meta_tag_key = get_metatag_key(meta_key)
 
+        		      next if meta_tag_key.nil?
+                      next if metatags.has_key?(meta_tag_key)
 
-        	end
+        		      metatags[meta_tag_key] = get_meta_value(meta.attributes) 
+        	    end
 
-        	return metatags
-       end
-      
-      return {}
+            end
+
+            return metatags
+
+        rescue Exception => e
+            ## something bad happened during extraction, lets output message and return empty hash
+            puts e.message
+            return {}
+        end
     end
 
   end
