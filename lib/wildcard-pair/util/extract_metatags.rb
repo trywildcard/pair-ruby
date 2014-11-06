@@ -78,7 +78,6 @@ module WildcardPair
 
         		next if (!meta_key.nil? || metatags.has_key?(meta_tag_key))
         		
-
 ##todo add check to see if its a meta tag key we care about
         		metatags[meta_tag_key] = get_meta_value(meta) 
 
