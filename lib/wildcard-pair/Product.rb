@@ -29,6 +29,19 @@ module WildcardPair
       instance_values
     end
 
+    def metatags=(metatags)
+      if metatags.nil? || !metatags.is_a?(Hash)
+        return
+      end
+
+      #see what you can set based on metatags
+      self.name=metatags['title']
+      self.description=metatags['description']
+      self.images=metatags['image_url']
+      self.app_link_ios=metatags['applink_ios']
+      self.app_link_android=metatags['applink_android']
+    end
+
     def colors=(colors)
       @colors ||= Array.new
 

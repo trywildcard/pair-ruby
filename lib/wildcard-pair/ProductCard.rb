@@ -40,6 +40,15 @@ module WildcardPair
       instance_values
     end
 
+    def populate_from_metatags(web_url)
+      @web_url=web_url
+      metatags = WildcardPair::ExtractMetaTags.extract(@web_url)
+
+      ##now that we've extracted metatags, create a Product and Offer object with it
+      self.product=WildcardPair::Product.new metatags: metatags
+      self.offers=WildcardPair::Offer.new metatags: metatags
+    end
+
     def offers=(offers)
       @offers ||= Array.new
 

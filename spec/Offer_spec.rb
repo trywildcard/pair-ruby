@@ -199,4 +199,46 @@ describe '#invalidofferjson' do
   end
 end
 
+describe 'nil_metatags' do
+  offer = WildcardPair::Offer.new metatags: nil
+  it "nil_metatags" do
+    offer.valid?.should eql false
+  end
+end
+
+describe 'empty_metatags' do
+  offer = WildcardPair::Offer.new metatags: {}
+  it "empty_metatags" do
+    offer.valid?.should eql false
+  end
+end
+
+describe 'incomplete_metatags' do
+  metatags = {'title' => 'title', 'description' => 'description'}
+  offer = WildcardPair::Offer.new metatags: metatags
+  it "incomplete_metatags" do
+    offer.price.should eql nil
+    offer.valid?.should eql false
+  end
+end
+
+describe 'invalid_price' do
+  metatags = {'title' => 'title', 'image_url' => 'image_url', 'price' => 'haha'}
+  offer = WildcardPair::Offer.new metatags: metatags
+  it "valid_metatags" do
+    offer.price.price.should eql 'haha'
+    offer.valid?.should eql false
+  end
+end
+
+describe 'valid_metatags' do
+  metatags = {'title' => 'title', 'image_url' => 'image_url', 'price' => '15.99'}
+  offer = WildcardPair::Offer.new metatags: metatags
+  it "valid_metatags" do
+    offer.price.price.should eql '15.99'
+    offer.price.currency.should eql 'USD'
+    offer.valid?.should eql true
+  end
+end
+
 end

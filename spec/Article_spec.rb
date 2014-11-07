@@ -52,4 +52,41 @@ describe '#article_with_invalid_image' do
 	end
 end
 
+describe 'nil_metatags' do
+  article = WildcardPair::Article.new metatags: nil
+  it "nil_metatags" do
+    article.valid?.should eql false
+  end
+end
+
+describe 'empty_metatags' do
+  article = WildcardPair::Article.new metatags: {}
+  it "empty_metatags" do
+    article.valid?.should eql false
+  end
+end
+
+describe 'valid_metatags' do
+  metatags = {'title' => 'title', 'description' => 'description'}
+  article = WildcardPair::Article.new metatags: metatags
+  it "valid_metatags" do
+    article.title.should eql 'title'
+    article.valid?.should eql false
+  end
+end
+
+describe 'valid_metatags' do
+  metatags = {'title' => 'title', 'image_url' => 'image_url', 'applink_ios' => 'ios', 'applink_android' => 'android', 'html' => 'html'}
+  article = WildcardPair::Article.new metatags: metatags
+  it "valid_metatags" do
+    article.title.should eql 'title'
+    article.html_content.should eql 'html'
+    article.app_link_android.should eql 'android'
+    article.app_link_ios.should eql 'ios'
+    article.media.image_url.should eql 'image_url'
+    article.media.type.should eql 'image'
+    article.valid?.should eql true
+  end
+end
+
 end
