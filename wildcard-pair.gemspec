@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
   #spec.add_development_dependency "rspec"
   spec.add_runtime_dependency "statsd-ruby", '~> 1.2', '>= 1.2.1' 
   spec.add_runtime_dependency "activemodel", '~> 4.1', '>= 4.1.1'
+  spec.add_runtime_dependency "nokogiri", '~> 1.6.4', '>= 1.6.4'
 end
