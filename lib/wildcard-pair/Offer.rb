@@ -31,8 +31,10 @@ module WildcardPair
         return
       end
 
-      #see what you can set based on metatags
-      self.price=WildcardPair::Price.new price: metatags['price']
+      #if price metatag exists, then set it
+      if (!metatags['price'].nil?)
+        self.price=WildcardPair::Price.new price: metatags['price']
+      end
     end
 
     def price=(price)

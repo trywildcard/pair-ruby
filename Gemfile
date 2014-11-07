@@ -4,6 +4,7 @@ source 'http://rubygems.org'
 #gemspec
 gem 'activemodel'
 gem 'statsd-ruby'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'rspec'

@@ -41,7 +41,7 @@ module WildcardPair
       instance_values
     end
 
-    def extract_metatags(web_url)
+    def populate_from_metatags(web_url)
       @web_url=web_url
       metatags = WildcardPair::ExtractMetaTags.extract(@web_url)
 
