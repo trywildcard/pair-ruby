@@ -119,4 +119,31 @@ describe "product card" do
   end
 end
 
+describe "product card from invalid url metatags" do
+  product_card = WildcardPair::ProductCard.new
+  product_card.populate_from_metatags('http://www.12901hasadflkadjfa.net')
+  it "is built from json" do
+    product_card.web_url.should eql 'http://www.12901hasadflkadjfa.net' 
+    product_card.product.name.should eql nil 
+    expect(product_card.valid?).to be(false)
+  end
+end
+
+
+describe "product card from valid url metatags" do
+  product_card = WildcardPair::ProductCard.new
+  product_card.populate_from_metatags('https://www.etsy.com/listing/128235512/etsy-i-buy-from-real-people-tote-bag')
+  it "is built from json" do
+    product_card.web_url.should eql 'https://www.etsy.com/listing/128235512/etsy-i-buy-from-real-people-tote-bag' 
+    product_card.product.name.should eql 'Etsy "I Buy from Real People" Tote Bag' 
+    product_card.product.description.should eql 'Keep it real with an Etsy limited edition I Buy from Real People Tote Bag. Made of sturdy cotton canvas, this bag is a great carry-all for work and' 
+    product_card.product.images[0].should eql 'https://img0.etsystatic.com/011/0/5147325/il_570xN.444675668_1tp8.jpg'
+    product_card.product.valid?.should eql true
+    product_card.offers.size.should eql 1
+    product_card.offers[0].price.should eql nil
+    expect(product_card.valid?).to be(false)
+  end
+end
+
+
 end

@@ -55,4 +55,16 @@ describe '#invalid video' do
 	end
 end
 
+describe "article card from valid url metatags" do
+  article_card = WildcardPair::ArticleCard.new
+  article_card.populate_from_metatags('http://www.bbc.com/news/business-29424351')
+  it "is built from json" do
+    article_card.web_url.should eql 'http://www.bbc.com/news/business-29424351' 
+    article_card.article.title.should eql 'Wonga sees profits more than halve' 
+    article_card.article.media.image_url.should eql 'http://news.bbcimg.co.uk/media/images/77915000/jpg/_77915774_77914640.jpg'
+    article_card.article.valid?.should eql true
+    expect(article_card.valid?).to be(true)
+  end
+end
+
 end
