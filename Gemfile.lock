@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    wildcard-pair (0.3.0)
+      activemodel (~> 4.1, >= 4.1.1)
+      statsd-ruby (~> 1.2, >= 1.2.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -35,7 +42,10 @@ GEM
       rb-inotify (>= 0.9)
     lumberjack (1.0.9)
     method_source (0.8.2)
+    mini_portile (0.6.1)
     minitest (5.4.2)
+    nokogiri (1.6.4.1)
+      mini_portile (~> 0.6.0)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -71,5 +81,7 @@ DEPENDENCIES
   activemodel
   guard
   guard-rspec
+  nokogiri
   rspec
   statsd-ruby
+  wildcard-pair!

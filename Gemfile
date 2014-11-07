@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+gemspec
 
 # Specify your gem's dependencies in wildcard-pair.gemspec
 #gemspec
