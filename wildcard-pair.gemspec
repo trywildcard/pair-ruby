@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "wildcard-pair"
-  spec.version       = "0.2.2"
+  spec.version       = "0.3.0"
   spec.authors       = ["Karthik Senthil"]
-  spec.email         = ["pair@trywildcard.com"]
+  spec.email         = ["partners@trywildcard.com"]
   spec.summary       = "Wildcard Pair Ruby SDK"
-  spec.description   = "Wildcard Pair SDK to faciliate partners create card content"
-  spec.homepage      = "http://pair.trywildcard.com"
+  spec.description   = "Wildcard Pair SDK to facilitate partners being able to create cards for their content"
+  spec.homepage      = "http://trywildcard.com/dev"
   spec.license       = "MIT"
 
   spec.files         = Dir['lib/*.rb'] + Dir['lib/*/*.rb'] + Dir['lib/*/*/*.rb']

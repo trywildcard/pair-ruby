@@ -41,6 +41,14 @@ module WildcardPair
       instance_values
     end
 
+    def populate_from_metatags(web_url)
+      @web_url=web_url
+      metatags = WildcardPair::ExtractMetaTags.extract(@web_url)
+
+      ##now that we've extracted metatags, let's create a Video object with it
+      self.media=WildcardPair::Media::Video.new metatags: metatags
+    end
+
     def media=(media)
       @media = map_hash(media, WildcardPair::Media::Video.new)
     end

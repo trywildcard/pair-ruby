@@ -36,6 +36,23 @@ module WildcardPair::Media
       instance_values
     end
 
+    def metatags=(metatags)
+      if metatags.nil? || !metatags.is_a?(Hash)
+        return
+      end
+
+      #see what you can set based on metatags
+      self.title=metatags['title']
+      self.embedded_url=metatags['video_url']
+      self.embedded_url_height=metatags['video_height']
+      self.embedded_url_width=metatags['video_width']
+
+      self.description=metatags['description']
+      self.poster_image_url=metatags['image_url']
+      self.app_link_ios=metatags['applink_ios']
+      self.app_link_android=metatags['applink_android']
+    end
+
     #exclude validation fields in the JSON output
     def as_json(options={})
       super(options.merge({:except => [:errors, :validation_context]}))

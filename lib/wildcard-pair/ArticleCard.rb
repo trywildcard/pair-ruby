@@ -41,6 +41,14 @@ module WildcardPair
       instance_values
     end
 
+    def populate_from_metatags(web_url)
+      @web_url=web_url
+      metatags = WildcardPair::ExtractMetaTags.extract(@web_url)
+
+      ##now that we've extracted metatags, let's create a Article 
+      self.article=WildcardPair::Article.new metatags: metatags
+    end
+
     def article=(article)
       @article = map_hash(article, WildcardPair::Article.new)
     end
