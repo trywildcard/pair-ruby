@@ -42,6 +42,7 @@ module WildcardPair
       #see what you can set based on metatags
       self.title=metatags['title']
       self.html_content=metatags['html']
+      self.abstract_content=metatags['description']
       self.media=Media::Image.new image_url: metatags['image_url']
       self.app_link_ios=metatags['applink_ios']
       self.app_link_android=metatags['applink_android']
