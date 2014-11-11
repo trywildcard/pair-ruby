@@ -47,8 +47,8 @@ end
    validcolor6 = WildcardPair::Color.new mapping_color: 'transparent'
    validcolors =[validcolor, validcolor2, validcolor3, validcolor4, validcolor5, validcolor6]
 
-   product = WildcardPair::Product.new name: 'product test', images: 'http://image.jpeg', colors: validcolor
-   product2 = WildcardPair::Product.new name: 'product test', images: 'http://image.jpeg', colors: validcolors
+   product = WildcardPair::Product.new name: 'product test', description: 'product description', images: 'http://image.jpeg', colors: validcolor
+   product2 = WildcardPair::Product.new name: 'product test', description: 'product description', images: 'http://image.jpeg', colors: validcolors
  
    it "validcolors" do
      product.valid?.should eql true

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe WildcardPair::ProductCard do
 
 before :each do
-    @product = WildcardPair::Product.new name: 'product test', images: 'http://image.jpeg', gender: 'male'
+    @product = WildcardPair::Product.new name: 'product test', description: 'product description', images: 'http://image.jpeg', gender: 'male'
     @price = WildcardPair::Price.new price: 5.00
     @validoffer = WildcardPair::Offer.new price: @price
     @validoffer2 = WildcardPair::Offer.new price: @price, availability: 'InStock'
@@ -43,7 +43,7 @@ end
 describe '#web_url' do
   price = WildcardPair::Price.new price: 5.0
   offer = WildcardPair::Offer.new price: price
-  product = WildcardPair::Product.new name: 'product test', images: 'http://image.jpeg'
+  product = WildcardPair::Product.new name: 'product test', description: 'product description', images: 'http://image.jpeg'
   product_card33 = WildcardPair::ProductCard.new offers: offer, web_url: 'http://brand.com/product/123', product: product
   it "web url" do
     product_card33.valid?.should eql true
@@ -71,7 +71,7 @@ end
 describe '#product' do
   price = WildcardPair::Price.new price: 5.0
   offer = WildcardPair::Offer.new price: price
-  product = WildcardPair::Product.new name: 'product test', images: 'http://image.jpeg'
+  product = WildcardPair::Product.new name: 'product test', description: 'product description', images: 'http://image.jpeg'
   product_card33 = WildcardPair::ProductCard.new offers: offer, web_url: 'http://brand.com/product/123', product: product 
   it "product" do
     product_card33.valid?.should eql true
@@ -80,7 +80,7 @@ describe '#product' do
 end
 
 describe '#nooffers' do
-  product = WildcardPair::Product.new name: 'product test', images: 'http://image.jpeg'
+  product = WildcardPair::Product.new name: 'product test', description: 'product description', images: 'http://image.jpeg'
   product_card = WildcardPair::ProductCard.new offers: nil, web_url: 'http://brand.com/product/123', product: product 
 
   it "nooffers" do
@@ -92,7 +92,7 @@ end
 describe '#invalidoffers' do
   invalidprice = WildcardPair::Price.new price: -4
   invalidoffer = WildcardPair::Offer.new price: invalidprice
-  product = WildcardPair::Product.new name: 'product test', images: 'http://image.jpeg'
+  product = WildcardPair::Product.new name: 'product test', description: 'product description', images: 'http://image.jpeg'
 
   product_card = WildcardPair::ProductCard.new offers: invalidoffer, web_url: 'http://brand.com/product/123', product: product  
 
