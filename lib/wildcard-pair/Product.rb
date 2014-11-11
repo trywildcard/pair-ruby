@@ -14,6 +14,7 @@ module WildcardPair
     attr_reader :colors, :images, :related_items, :referenced_items, :options
 
     validates :name, presence: true
+    validates :description, presence: true
     validates :gender, allow_nil: true, inclusion: {in: %w(male female unisex) }
 
     validate :validateColors

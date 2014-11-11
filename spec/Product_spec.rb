@@ -3,28 +3,35 @@ require 'spec_helper'
 describe WildcardPair::Product do
 
 describe '#nil_name' do
-  product = WildcardPair::Product.new images: 'http://image.jpeg', gender: nil
+  product = WildcardPair::Product.new images: 'http://image.jpeg', gender: nil, description: 'description'
   it "nil_name" do
     product.valid?.should eql false
   end
 end
 
 describe '#nil_images' do
-  product = WildcardPair::Product.new name: 'product name', gender: nil
+  product = WildcardPair::Product.new name: 'product name', gender: nil, description: 'description'
+  it "nil_image" do
+    product.valid?.should eql false
+  end
+end
+
+describe '#nil_description' do
+  product = WildcardPair::Product.new name: 'product name', description: nil, images: 'http://image.jpeg', gender: nil
   it "nil_image" do
     product.valid?.should eql false
   end
 end
 
 describe '#nil_gender' do
-  product = WildcardPair::Product.new name: 'product name', images: 'http://image.jpeg', gender: nil
+  product = WildcardPair::Product.new name: 'product name', description: 'description', images: 'http://image.jpeg', gender: nil
   it "nil_gender" do
     product.valid?.should eql true
   end
 end
 
 describe '#one_image' do
-  product = WildcardPair::Product.new name: 'product name', images: 'http://image.jpeg', gender: nil
+  product = WildcardPair::Product.new name: 'product name', description: 'description', images: 'http://image.jpeg', gender: nil
   it "one_image" do
     product.images.is_a?(Array).should eql true
     product.images.length.should eql 1
@@ -34,7 +41,7 @@ end
 
 describe '#two_images' do
   images = ['http://image.jpeg', 'http://image2.jpeg']
-  product = WildcardPair::Product.new name: 'product name', images: images, gender: nil
+  product = WildcardPair::Product.new name: 'product name', description: 'description', images: images, gender: nil
   it "two_image" do
     product.images.is_a?(Array).should eql true
     product.images.length.should eql 2
@@ -43,14 +50,14 @@ describe '#two_images' do
 end
 
 describe '#invalid_gender' do
-  product = WildcardPair::Product.new name: 'product name', images: 'http://image.jpeg', gender: 'malefemale'
+  product = WildcardPair::Product.new name: 'product name', description: 'description', images: 'http://image.jpeg', gender: 'malefemale'
   it "invalid_gender" do
     product.valid?.should eql false
   end
 end
 
 describe '#gender' do
-  product = WildcardPair::Product.new name: 'product name', images: 'http://image.jpeg', gender: 'unisex'
+  product = WildcardPair::Product.new name: 'product name', description: 'description', images: 'http://image.jpeg', gender: 'unisex'
   it "gender" do
     product.valid?.should eql true
     product.gender.should eql 'unisex'
@@ -82,10 +89,11 @@ describe 'valid_metatags' do
 end
 
 describe 'valid_metatags' do
-  metatags = {'title' => 'title', 'image_url' => 'image_url', 'applink_ios' => 'ios', 'applink_android' => 'android'}
+  metatags = {'title' => 'title', 'description' => 'description', 'image_url' => 'image_url', 'applink_ios' => 'ios', 'applink_android' => 'android'}
   product = WildcardPair::Product.new metatags: metatags
   it "valid_metatags" do
     product.name.should eql 'title'
+    product.description.should eql 'description'
     product.app_link_android.should eql 'android'
     product.app_link_ios.should eql 'ios'
     product.images.size.should eql 1
