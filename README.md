@@ -27,16 +27,3 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-
-## Publishing
-
-*Make sure you have geminabox installed.  If not, use `gem install geminabox`*
-
-When you increment the version, remember to push it to the gem server.
-
-gem build wildcard-pair.gemspec
-gem inabox wildcard-pair.x.x.x.gem
-If inabox asks, hostname is
-
-http://repo.trywildcard.com:9292
-(More info)[https://sites.google.com/a/trywildcard.com/wildcard-internal-wiki/engineering-home/infrastructure/internal-repos]
