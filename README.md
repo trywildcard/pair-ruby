@@ -2,7 +2,7 @@
 
 This is the Wildcard Pair Ruby SDK Project.  This SDK is geared for use by brands, merchants, publishers, or any content creator to create cards for their content.
 
-To learn more about cards and how to use this SDK, check out our [developer documentation](http://trywildcard.com/docs)
+To learn more about cards and how to use this SDK, check out our [developer documentation](http://trywildcard.com/docs.
 
 To learn more about Wildcard or to check out our card-browser application for your iPhone, click [here](http://trywildcard.com).
 
