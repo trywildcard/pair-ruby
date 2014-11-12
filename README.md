@@ -2,7 +2,7 @@
 
 This is the Wildcard Pair Ruby SDK Project.  This SDK is geared for use by brands, merchants, publishers, or any content creator to create cards for their content.
 
-To learn more about cards and how to use this SDK, check out our [developer documentation](http://trywildcard.com/docs.
+To learn more about cards and how to use this SDK, check out our [developer documentation](http://trywildcard.com/docs).
 
 To learn more about Wildcard or to check out our card-browser application for your iPhone, click [here](http://trywildcard.com).
 
@@ -24,7 +24,7 @@ Or install it yourself as:
 
 # Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/wildcard-pair/fork )
+1. Fork it ( https://github.com/[my-github-username]/pair-ruby/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
