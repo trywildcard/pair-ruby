@@ -74,6 +74,7 @@ describe 'article card with keywords' do
 		expect(article_card).to be_an_instance_of WildcardPair::ArticleCard
 		expect(article_card.valid?).to eql true
 		expect(article_card.card_type).to eql 'article'
+		expect(article_card.keywords).to eql ['this', 'is', 'a', 'list', 'of', 'keywords']
 		expect{article_card.to_json}.not_to raise_error
 	end
 end
