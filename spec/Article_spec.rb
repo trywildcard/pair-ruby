@@ -77,14 +77,12 @@ describe 'valid_metatags' do
 end
 
 describe 'valid_metatags' do
-  metatags = {'title' => 'title', 'description' => 'description', 'image_url' => 'image_url', 'applink_ios' => 'ios', 'applink_android' => 'android', 'html' => 'html'}
+  metatags = {'title' => 'title', 'description' => 'description', 'image_url' => 'image_url', 'html' => 'html'}
   article = WildcardPair::Article.new metatags: metatags
   it "valid_metatags" do
     article.title.should eql 'title'
     article.abstract_content.should eql 'description'
     article.html_content.should eql 'html'
-    article.app_link_android.should eql 'android'
-    article.app_link_ios.should eql 'ios'
     article.media.image_url.should eql 'image_url'
     article.media.type.should eql 'image'
     article.valid?.should eql true

@@ -25,6 +25,8 @@ module WildcardPair
 
       ##now that we've extracted metatags, let's create a Review 
       self.review=WildcardPair::Review.new metatags: metatags
+      self.app_link_ios=metatags['applink_ios']
+      self.app_link_android=metatags['applink_android']
     end
 
     def review=(review)

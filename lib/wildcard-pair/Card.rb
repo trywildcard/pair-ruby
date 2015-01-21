@@ -13,7 +13,7 @@ module WildcardPair
 		include ActiveModel::Serializers::JSON
 		include WildcardPair::HashMappable
 
-		attr_accessor :web_url, :keywords
+		attr_accessor :web_url, :keywords, :app_link_android, :app_link_ios
 		attr_reader :card_type, :pair_version
 
 		validates :web_url, presence: true

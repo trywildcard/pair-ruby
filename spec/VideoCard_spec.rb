@@ -50,8 +50,8 @@ describe "video card from valid url metatags" do
     expect(video_card.media.embedded_url.to_s.start_with?('http://www.youtube.com/v/0RFfrsABtQo')).to eql true
     video_card.media.embedded_url_height.should eql '720' 
     video_card.media.embedded_url_width.should eql '1280' 
-    video_card.media.app_link_ios.should eql 'vnd.youtube://www.youtube.com/watch?v=0RFfrsABtQo&feature=applinks'
-    video_card.media.app_link_android.should eql 'http://www.youtube.com/watch?v=0RFfrsABtQo&feature=applinks'
+    video_card.app_link_ios.should eql 'vnd.youtube://www.youtube.com/watch?v=0RFfrsABtQo&feature=applinks'
+    video_card.app_link_android.should eql 'http://www.youtube.com/watch?v=0RFfrsABtQo&feature=applinks'
     video_card.media.poster_image_url.should eql 'https://i.ytimg.com/vi/0RFfrsABtQo/maxresdefault.jpg'
     video_card.media.valid?.should eql true
     expect(video_card.valid?).to be(true)

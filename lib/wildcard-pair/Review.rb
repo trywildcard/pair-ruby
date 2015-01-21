@@ -16,8 +16,7 @@ module WildcardPair
     attr_accessor :title, :html_content
     # optional fields
     attr_accessor :publication_date, :abstract_content, :source, :author,
-      :updated_date, :product_name, :app_link_ios,
-      :app_link_android
+      :updated_date, :product_name
     attr_reader :rating, :media
 
     validates :title, presence: true
@@ -36,8 +35,6 @@ module WildcardPair
       self.html_content=metatags['html']
       self.abstract_content=metatags['description']
       self.media=Media::Image.new image_url: metatags['image_url']
-      self.app_link_ios=metatags['applink_ios']
-      self.app_link_android=metatags['applink_android']
     end
 
     def media=(media)

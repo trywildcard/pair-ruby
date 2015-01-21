@@ -67,13 +67,11 @@ describe 'valid_metatags' do
 end
 
 describe 'valid_metatags' do
-  metatags = {'title' => 'title', 'video_url' => 'video_url', 'applink_ios' => 'ios', 'applink_android' => 'android', 'video_width' => '2', 'video_height' => '1'}
+  metatags = {'title' => 'title', 'video_url' => 'video_url', 'video_width' => '2', 'video_height' => '1'}
   video = WildcardPair::Media::Video.new metatags: metatags
   it "valid_metatags" do
     video.title.should eql 'title'
     video.embedded_url.should eql 'video_url'
-    video.app_link_android.should eql 'android'
-    video.app_link_ios.should eql 'ios'
     video.embedded_url_height.should eql '1'
     video.embedded_url_width.should eql '2'
     video.valid?.should eql true

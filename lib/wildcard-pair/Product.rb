@@ -10,7 +10,7 @@ module WildcardPair
     include ActiveModel::Serializers::JSON
     include WildcardPair::HashMappable
 
-    attr_accessor :name, :merchant, :brand, :description, :gender, :rating, :rating_scale, :rating_count, :sizes, :model, :app_link_ios, :app_link_android
+    attr_accessor :name, :merchant, :brand, :description, :gender, :rating, :rating_scale, :rating_count, :sizes, :model
     attr_reader :colors, :images, :related_items, :referenced_items, :options
 
     validates :name, presence: true
@@ -39,8 +39,6 @@ module WildcardPair
       self.name=metatags['title']
       self.description=metatags['description']
       self.images=metatags['image_url']
-      self.app_link_ios=metatags['applink_ios']
-      self.app_link_android=metatags['applink_android']
     end
 
     def colors=(colors)

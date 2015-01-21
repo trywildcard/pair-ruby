@@ -61,8 +61,8 @@ describe "review card from valid url metatags" do
     review_card.review.title.should eql 'LG G2 review' 
     review_card.review.media.image_url.should eql 'http://www.blogcdn.com/www.engadget.com/media/2013/09/g2review-1378739225.jpg'
     review_card.review.abstract_content.should eql 'There are a lot of smartphones out there now. You know this. To add to the confusion, many companies are now parading out multiple top-drawer phones: thi'
-    review_card.review.app_link_ios.should eql 'com.aol.engadget://www.engadget.com/2013/09/09/lg-g2-review/'
-    review_card.review.app_link_android.should eql 'engadget://lg-g2-review'
+    review_card.app_link_ios.should eql 'com.aol.engadget://www.engadget.com/2013/09/09/lg-g2-review/'
+    review_card.app_link_android.should eql 'engadget://lg-g2-review'
     review_card.review.valid?.should eql true
     expect(review_card.valid?).to be(true)
   end

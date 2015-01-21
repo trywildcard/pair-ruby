@@ -28,6 +28,8 @@ module WildcardPair
 
       ##now that we've extracted metatags, let's create a Video object with it
       self.media=WildcardPair::Media::Video.new metatags: metatags
+      self.app_link_ios=metatags['applink_ios']
+      self.app_link_android=metatags['applink_android']
     end
 
     def media=(media)

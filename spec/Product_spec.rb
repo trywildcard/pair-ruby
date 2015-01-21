@@ -89,13 +89,11 @@ describe 'valid_metatags' do
 end
 
 describe 'valid_metatags' do
-  metatags = {'title' => 'title', 'description' => 'description', 'image_url' => 'image_url', 'applink_ios' => 'ios', 'applink_android' => 'android'}
+  metatags = {'title' => 'title', 'description' => 'description', 'image_url' => 'image_url'}
   product = WildcardPair::Product.new metatags: metatags
   it "valid_metatags" do
     product.name.should eql 'title'
     product.description.should eql 'description'
-    product.app_link_android.should eql 'android'
-    product.app_link_ios.should eql 'ios'
     product.images.size.should eql 1
     product.valid?.should eql true
   end

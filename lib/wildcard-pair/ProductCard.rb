@@ -27,6 +27,8 @@ module WildcardPair
       ##now that we've extracted metatags, create a Product and Offer object with it
       self.product=WildcardPair::Product.new metatags: metatags
       self.offers=WildcardPair::Offer.new metatags: metatags
+      self.app_link_ios=metatags['applink_ios']
+      self.app_link_android=metatags['applink_android']
     end
 
     def offers=(offers)

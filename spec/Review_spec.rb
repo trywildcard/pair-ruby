@@ -72,14 +72,12 @@ describe 'valid_metatags' do
 end
 
 describe 'valid_metatags' do
-  metatags = {'title' => 'title', 'description' => 'description', 'image_url' => 'image_url', 'applink_ios' => 'ios', 'applink_android' => 'android', 'html' => 'html'}
+  metatags = {'title' => 'title', 'description' => 'description', 'image_url' => 'image_url', 'html' => 'html'}
   review = WildcardPair::Review.new metatags: metatags
   it "valid_metatags" do
     review.title.should eql 'title'
     review.abstract_content.should eql 'description'
     review.html_content.should eql 'html'
-    review.app_link_android.should eql 'android'
-    review.app_link_ios.should eql 'ios'
     review.media.image_url.should eql 'image_url'
     review.media.type.should eql 'image'
     review.valid?.should eql true

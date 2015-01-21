@@ -15,8 +15,7 @@ module WildcardPair::Media
     attr_accessor :title, :embedded_url, :embedded_url_width, :embedded_url_height, :type
     # optional fields
     attr_accessor :stream_url, :stream_content_type, :publication_date, 
-      :description, :poster_image_url, :creator, :source, :app_link_ios, 
-      :app_link_android
+      :description, :poster_image_url, :creator, :source
 
     validates :title, presence: true
     validates :embedded_url, presence: true
@@ -49,8 +48,6 @@ module WildcardPair::Media
 
       self.description=metatags['description']
       self.poster_image_url=metatags['image_url']
-      self.app_link_ios=metatags['applink_ios']
-      self.app_link_android=metatags['applink_android']
     end
 
     #exclude validation fields in the JSON output
