@@ -55,14 +55,14 @@ end
 describe 'nil_metatags' do
   article = WildcardPair::Article.new metatags: nil
   it "nil_metatags" do
-    article.valid?.should eql false
+    expect(article.valid?).to eql false
   end
 end
 
 describe 'empty_metatags' do
   article = WildcardPair::Article.new metatags: {}
   it "empty_metatags" do
-    article.valid?.should eql false
+    expect(article.valid?).to eql false
   end
 end
 
@@ -70,9 +70,9 @@ describe 'valid_metatags' do
   metatags = {'title' => 'title', 'description' => 'description'}
   article = WildcardPair::Article.new metatags: metatags
   it "valid_metatags" do
-    article.title.should eql 'title'
-    article.abstract_content.should eql 'description'
-    article.valid?.should eql false
+    expect(article.title).to eql 'title'
+    expect(article.abstract_content).to eql 'description'
+    expect(article.valid?).to eql false
   end
 end
 
@@ -80,14 +80,14 @@ describe 'valid_metatags' do
   metatags = {'title' => 'title', 'description' => 'description', 'image_url' => 'image_url', 'applink_ios' => 'ios', 'applink_android' => 'android', 'html' => 'html'}
   article = WildcardPair::Article.new metatags: metatags
   it "valid_metatags" do
-    article.title.should eql 'title'
-    article.abstract_content.should eql 'description'
-    article.html_content.should eql 'html'
-    article.app_link_android.should eql 'android'
-    article.app_link_ios.should eql 'ios'
-    article.media.image_url.should eql 'image_url'
-    article.media.type.should eql 'image'
-    article.valid?.should eql true
+    expect(article.title).to eql 'title'
+    expect(article.abstract_content).to eql 'description'
+    expect(article.html_content).to eql 'html'
+    expect(article.app_link_android).to eql 'android'
+    expect(article.app_link_ios).to eql 'ios'
+    expect(article.media.image_url).to eql 'image_url'
+    expect(article.media.type).to eql 'image'
+    expect(article.valid?).to eql true
   end
 end
 

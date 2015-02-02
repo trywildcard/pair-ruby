@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby -wKU
 
 require_relative 'Card.rb'
-require_relative 'Media.rb'
 
 module WildcardPair
   class ArticleCard < WildcardPair::Card

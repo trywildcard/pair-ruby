@@ -3,7 +3,7 @@
 require_relative 'Card.rb'
 
 module WildcardPair
-  class VideoCard < WildcardPair::Card
+  class ImageCard < WildcardPair::Card
     private
 
     attr_accessor :media
@@ -18,24 +18,26 @@ module WildcardPair
 
     def initialize(attributes = {})
       super
-      @card_type = 'video'
+      @card_type = 'image'
     end
 
     def populate_from_metatags(web_url)
       @web_url=web_url
       metatags = WildcardPair::ExtractMetaTags.extract(@web_url)
 
-      ##now that we've extracted metatags, let's create a Video object with it
-      self.media=WildcardPair::Media::Video.new metatags: metatags
+      ##now that we've extracted metatags, let's create an Image object with it
+      self.media=WildcardPair::Media::Image.new metatags: metatags
+      self.app_link_ios = metatags['applink_ios']
+      self.app_link_android = metatags['applink_android']
     end
 
     def media=(media)
-      @media = map_hash(media, WildcardPair::Media::Video.new)
+      @media = map_hash(media, WildcardPair::Media::Image.new)
     end
 
     def validate_media
-      if @media.nil? || !@media.is_a?(Video)
-        errors.add(:media, "A video is required")
+      if @media.nil? || !@media.is_a?(Image)
+        errors.add(:media, "An image is required")
         return
       end
 
