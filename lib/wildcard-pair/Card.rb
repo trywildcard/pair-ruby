@@ -1,5 +1,6 @@
 require 'active_model'
 require_relative 'hash_mappable.rb'
+require_relative 'Creator.rb'
 
 module WildcardPair
 	class Card
@@ -13,11 +14,12 @@ module WildcardPair
 		include ActiveModel::Serializers::JSON
 		include WildcardPair::HashMappable
 
-		attr_accessor :web_url, :keywords
+		attr_accessor :web_url, :keywords, :creator, :app_link_android, :app_link_ios
 		attr_reader :card_type, :pair_version
 
 		validates :web_url, presence: true
 		validate :validate_keywords
+		validate :validate_creator
 
 		def initialize(attributes = {})
 			attributes.each do |name, value|
@@ -48,6 +50,15 @@ module WildcardPair
 						return
 					end
 				end
+			end
+		end
+
+		def validate_creator
+			if @creator.nil? then return end
+
+			if !@creator.is_a? Creator or !@creator.valid?
+				errors.add(:creator, "Creator is invalid")
+				return false
 			end
 		end
 
