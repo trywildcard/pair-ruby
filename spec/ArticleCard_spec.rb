@@ -6,6 +6,7 @@ before :each do
 	@article = WildcardPair::Article.new title: 'article title', html_content: '<span></span>'
 	@image = WildcardPair::Media::Image.new image_url: 'http://image.com'
 	@video = WildcardPair::Media::Video.new title: 'video', embedded_url: 'http://video.com', embedded_url_width: 100, embedded_url_height: 100
+	@keywords = ['this', 'is', 'a', 'list', 'of', 'keywords']
 end
 
 describe '#new' do
@@ -65,6 +66,26 @@ describe "article card from valid url metatags" do
     article_card.article.valid?.should eql true
     expect(article_card.valid?).to be(true)
   end
+end
+
+describe 'article card with keywords' do
+	it "builds an article card" do
+		article_card = WildcardPair::ArticleCard.new web_url: "http://article.com", article: @article, keywords: @keywords
+		expect(article_card).to be_an_instance_of WildcardPair::ArticleCard
+		expect(article_card.valid?).to eql true
+		expect(article_card.card_type).to eql 'article'
+		expect(article_card.keywords).to eql ['this', 'is', 'a', 'list', 'of', 'keywords']
+		expect{article_card.to_json}.not_to raise_error
+	end
+end
+
+describe 'article card with invalid keywords' do
+	it "builds an article card" do
+		article_card = WildcardPair::ArticleCard.new web_url: "http://article.com", article: @article, keywords: [1, 3, {key: :value}]
+		expect(article_card).to be_an_instance_of WildcardPair::ArticleCard
+		expect(article_card.valid?).to eql false
+		expect{article_card.to_json}.to raise_error
+	end
 end
 
 end
