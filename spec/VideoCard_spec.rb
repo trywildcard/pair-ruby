@@ -47,7 +47,7 @@ describe "video card from valid url metatags" do
     video_card.web_url.should eql 'https://www.youtube.com/watch?v=0RFfrsABtQo' 
     video_card.media.title.should eql 'Best of Phantom: Cavaliers Practice' 
     video_card.media.description.should eql 'Take a look at the new-look Cleveland Cavaliers through the lens of the Phantom camera during a practice session. Visit nba.com/video for more highlights. Ab...' 
-    expect(video_card.media.embedded_url.to_s.start_with?('http://www.youtube.com/v/0RFfrsABtQo')).to eql true
+    expect(video_card.media.embedded_url.to_s.start_with?('https://www.youtube.com/embed/0RFfrsABtQo')).to eql true
     video_card.media.embedded_url_height.should eql '720' 
     video_card.media.embedded_url_width.should eql '1280' 
     video_card.media.app_link_ios.should eql 'vnd.youtube://www.youtube.com/watch?v=0RFfrsABtQo&feature=applinks'

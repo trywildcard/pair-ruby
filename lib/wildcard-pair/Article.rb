@@ -12,7 +12,7 @@ module WildcardPair
       :updated_date, :is_breaking, :app_link_android, :app_link_ios
 
     validates :title, presence: true
-    validates :html_content, presence: true
+    validates :abstract_content, presence: true
 
     def metatags=(metatags)
       if metatags.nil? || !metatags.is_a?(Hash)
