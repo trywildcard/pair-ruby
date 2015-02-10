@@ -1,0 +1,17 @@
+{
+    "pair_version": "0.4.6",
+    "card_type": "link",
+    "web_url": "https://news.ycombinator.com/ibm-layoffs",
+    "keywords": [
+        "keyword1",
+        "keyword2"
+    ],
+    "app_link_ios": "android://applink",
+    "app_link_android": "android://applink",
+    "target": {
+        "url": "http://spectrum.ieee.org/view-from-the-valley/at-work/tech-careers/massive-worldwide-layoff-underway-at-ibm",
+        "title": "Massive WorldWide Layoff Underway at IBM",
+        "description": "IBM layoffs started last month.  Details to follow.",
+        "publication_date": "2015-02-02T00:00:00.000+0000"
+    }
+}
