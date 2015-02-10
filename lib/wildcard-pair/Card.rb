@@ -6,7 +6,7 @@ module WildcardPair
 	class Card
 		private
 
-		attr_accessor :card_type, :pair_version
+		attr_accessor :card_type, :pair_version, :creator
 
 		public
 
@@ -14,8 +14,8 @@ module WildcardPair
 		include ActiveModel::Serializers::JSON
 		include WildcardPair::HashMappable
 
-		attr_accessor :web_url, :keywords, :creator, :app_link_android, :app_link_ios
-		attr_reader :card_type, :pair_version
+		attr_accessor :web_url, :keywords, :app_link_android, :app_link_ios
+		attr_reader :card_type, :pair_version, :creator
 
 		validates :web_url, presence: true
 		validate :validate_keywords
@@ -51,6 +51,10 @@ module WildcardPair
 					end
 				end
 			end
+		end
+
+		def creator=(creator)
+			@creator = map_hash(creator, WildcardPair::Creator.new)
 		end
 
 		def validate_creator
