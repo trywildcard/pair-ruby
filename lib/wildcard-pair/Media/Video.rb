@@ -1,14 +1,11 @@
 #!/usr/bin/env ruby -wKU
 
-require 'active_model'
-require_relative '../hash_mappable.rb'
+require_relative '../Media.rb'
+require_relative '../Object.rb'
 
 module WildcardPair::Media
-  class Video
+  class Video < WildcardPair::Object
 
-    include ActiveModel::Validations
-    include ActiveModel::Serializers::JSON
-    include WildcardPair::HashMappable
     include WildcardPair::Media
 
     # required fields
@@ -25,15 +22,8 @@ module WildcardPair::Media
     validates :type, presence: true, inclusion: {in: %w(video), message: 'incorrect media type specified'}
 
     def initialize(attributes = {})
-      attributes.each do |name, value|
-        send("#{name}=", value)
-      end
-
+      super
       @type = 'video'
-    end
-
-    def attributes
-      instance_values
     end
 
     def metatags=(metatags)
@@ -52,19 +42,5 @@ module WildcardPair::Media
       self.app_link_ios=metatags['applink_ios']
       self.app_link_android=metatags['applink_android']
     end
-
-    #exclude validation fields in the JSON output
-    def as_json(options={})
-      super(options.merge({:except => [:errors, :validation_context]}))
-    end
-
-    def to_json(options={})
-      if self.valid?
-        super(options)
-      else
-        raise "Video is not valid - please remedy the following errors:" << self.errors.messages.to_s
-      end    
-    end 
-
   end
 end

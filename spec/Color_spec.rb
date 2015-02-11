@@ -3,11 +3,11 @@ require 'spec_helper'
 describe WildcardPair::Color do
 
 describe '#new' do
-  it "blank color object returns a Color object" do
+  it "blank color object returns a Color object and is invalid" do
     color = WildcardPair::Color.new 
     color.should be_an_instance_of WildcardPair::Color
-    color.valid?.should eql true
-    expect {color.to_json}.not_to raise_error
+    color.valid?.should eql false
+    expect {color.to_json}.to raise_error
   end
 end
 
@@ -39,12 +39,12 @@ end
  end
  
  describe '#validcolors' do
-   validcolor = WildcardPair::Color.new mapping_color: 'offwhite'
-   validcolor2 = WildcardPair::Color.new mapping_color: 'black'
-   validcolor3= WildcardPair::Color.new mapping_color: 'gray'
-   validcolor4 = WildcardPair::Color.new mapping_color: 'gold'
-   validcolor5 = WildcardPair::Color.new mapping_color: 'pink'
-   validcolor6 = WildcardPair::Color.new mapping_color: 'transparent'
+   validcolor = WildcardPair::Color.new mapping_color: 'offwhite', display_name: 'offwhite'
+   validcolor2 = WildcardPair::Color.new mapping_color: 'black', display_name: 'offwhite'
+   validcolor3= WildcardPair::Color.new mapping_color: 'gray', display_name: 'offwhite'
+   validcolor4 = WildcardPair::Color.new mapping_color: 'gold', display_name: 'offwhite'
+   validcolor5 = WildcardPair::Color.new mapping_color: 'pink', display_name: 'offwhite'
+   validcolor6 = WildcardPair::Color.new mapping_color: 'transparent', display_name: 'offwhite'
    validcolors =[validcolor, validcolor2, validcolor3, validcolor4, validcolor5, validcolor6]
 
    product = WildcardPair::Product.new name: 'product test', description: 'product description', images: 'http://image.jpeg', colors: validcolor
