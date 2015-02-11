@@ -1,12 +1,7 @@
-
-require 'active_model'
-require_relative 'hash_mappable.rb'
+require_relative 'Object.rb'
 
 module WildcardPair  
-  class Offer
-    include ActiveModel::Validations
-    include ActiveModel::Serializers::JSON
-    include WildcardPair::HashMappable
+  class Offer < WildcardPair::Object
 
     attr_accessor :description, :availability, :quantity, :weight, :weight_units, :offer_id, :sale_start_date, :sale_end_date, :expiration_date
 
@@ -19,12 +14,6 @@ module WildcardPair
     validates :quantity, allow_nil: true, numericality: {only_integer: true, greater_than_or_equal_to: 0} 
 
     validate :validatePrices
- 
-    def initialize(attributes = {})
-      attributes.each do |name, value|
-        send("#{name}=", value)
-      end 
-    end
 
     def metatags=(metatags)
       if metatags.nil? || !metatags.is_a?(Hash)
@@ -47,10 +36,6 @@ module WildcardPair
 
     def shipping_cost=(shipping_cost)
       @shipping_cost = map_hash(shipping_cost, WildcardPair::Price.new)
-    end
-
-    def attributes
-      instance_values
     end
 
     def geographic_availability=(geographic_availability)
@@ -83,20 +68,5 @@ module WildcardPair
         end
       end  
     end
-
-    #exclude validation fields in the JSON output
-    def as_json(options={})
-      super(options.merge({:except => [:errors, :validation_context]}))
-    end
-
-
-    def to_json(options = {})
-      if self.valid?
-        super(options)
-      else
-        raise "Offer is not valid - please remedy the following errors:" << self.errors.messages.to_s
-      end   
-    end 
-
   end
 end

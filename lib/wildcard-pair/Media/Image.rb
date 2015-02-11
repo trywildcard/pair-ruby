@@ -1,46 +1,35 @@
 #!/usr/bin/env ruby -wKU
 
-require 'active_model'
-require_relative '../hash_mappable.rb'
 require_relative '../Media.rb'
+require_relative '../Object.rb'
 
 module WildcardPair::Media
-  class Image
+  class Image < WildcardPair::Object
 
-    include ActiveModel::Validations
-    include ActiveModel::Serializers::JSON
-    include WildcardPair::HashMappable
     include WildcardPair::Media
 
-    attr_accessor :image_url, :image_caption, :type
+    attr_accessor :image_url, :image_caption, :type, 
+      :title, :author, :width, :height, :publication_date
 
     validates :image_url, presence: true
     validates :type, presence: true, inclusion: {in: %w(image), message: 'incorrect media type specified'}
+    validates :width, allow_nil: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+    validates :height, allow_nil: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
     def initialize(attributes = {})
-      attributes.each do |name, value|
-        send("#{name}=", value)
-      end
-
+      super
       @type = 'image'
     end
 
-    def attributes
-      instance_values
+    def metatags=(metatags)
+      if metatags.nil? || !metatags.is_a?(Hash)
+        return
+      end
+
+      #see what you can set based on metatags
+      self.title=metatags['title']
+      self.image_caption=metatags['description']
+      self.image_url=metatags['image_url']
     end
-
-    #exclude validation fields in the JSON output
-    def as_json(options={})
-      super(options.merge({:except => [:errors, :validation_context]}))
-    end
-
-    def to_json(options={})
-      if self.valid?
-        super(options)
-      else
-        raise "Image is not valid - please remedy the following errors:" << self.errors.messages.to_s
-      end    
-    end 
-
   end
 end
